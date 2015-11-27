@@ -11,6 +11,12 @@ import android.view.View;
  */
 public class CustomView extends View{
 
+    //Timing Vars
+    long mNowTime = 0;
+    long mLastTime = 0;
+    long mElapsedTime = 0;
+
+    boolean mRunning = true;
 
     CustomViewEvents mCallback;
 
@@ -30,7 +36,7 @@ public class CustomView extends View{
     }
 
     private void init(){
-
+        mLastTime = System.nanoTime() / 1000000;
     }
 
     public void setCustomViewListener(CustomViewEvents listener){
@@ -40,7 +46,13 @@ public class CustomView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
 
-        mCallback.onUpdate();
+        //Calculate time
+        mNowTime = System.nanoTime() / 1000000;
+        mElapsedTime = mNowTime - mLastTime;
+        mLastTime = mNowTime;
+
+
+        mCallback.onUpdate(mElapsedTime);
         mCallback.onDraw(canvas);
 
         this.postInvalidate();
@@ -48,7 +60,7 @@ public class CustomView extends View{
     }
 
     interface CustomViewEvents {
-        void onUpdate();
+        void onUpdate(long elapsedTime);
         void onDraw(Canvas c);
     }
 }

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 /**
  * Created by randy.thedford on 11/27/15.
  */
@@ -39,15 +41,26 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
         mPaint.setColor(Color.BLACK);
         mPaint.setTextSize(50);
 
-        Bitmap robotBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.robot1);
-        mRobot = new AnimatedSprite(robotBitmap);
+        ArrayList<Bitmap> robotBitmaps = new ArrayList<>();
+
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot1) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot2) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot3) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot4) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot5) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot6) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot7) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot8) );
+
+
+        mRobot = new AnimatedSprite(robotBitmaps);
 
     }
 
     @Override
-    public void onUpdate() {
+    public void onUpdate(long elapsedTime) {
         mLoops++;
-        mRobot.update();
+        mRobot.update(elapsedTime);
     }
 
     @Override
