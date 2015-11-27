@@ -1,5 +1,6 @@
 package com.invisiblecollege.robotgame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (id){
             case R.id.play:
-                Toast.makeText(this, "Send user to game", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, GameActivity.class);
+                startActivity(intent);
                 break;
         }
     }
