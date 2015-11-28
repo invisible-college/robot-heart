@@ -16,13 +16,23 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/app_name"
-            android:id="@+id/textView" />
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:textSize="40dp"
+            android:paddingBottom="30dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/play"
             android:id="@+id/play"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_highscores"
+            android:id="@+id/view_highscore"
+            android:layout_gravity="center" />
     </LinearLayout>
 </RelativeLayout>

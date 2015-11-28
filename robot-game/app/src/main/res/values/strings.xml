@@ -6,6 +6,7 @@
     <string name="highscore">Highscore</string>
     <string name="view_highscores">View Highscores</string>
     <string name="highscore_colon">Highscore:</string>
+    <string name="date_colon">Date:</string>
     <string name="back">Back</string>
     <string name="gameover">Game Over</string>
 

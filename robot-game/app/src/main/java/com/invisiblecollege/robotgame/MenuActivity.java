@@ -15,8 +15,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_menu);
 
         Button play = (Button)findViewById(R.id.play);
-
         play.setOnClickListener(this);
+
+        Button hs = (Button)findViewById(R.id.view_highscore);
+        hs.setOnClickListener(this);
 
     }
 
@@ -28,6 +30,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.play:
                 Intent intent = new Intent(this, GameActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.view_highscore:
+                Intent intent2 = new Intent(this, HighscoreActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
