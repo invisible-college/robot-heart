@@ -35,7 +35,7 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
     AnimatedSprite mRobot;
 
     long mTimer = 0;
-    long mMaxTimer = 5000;
+    long mMaxTimer = 60000;
 
     SoundPool mSoundPool;
 

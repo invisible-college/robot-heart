@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.SaveCallback;
 
 /**
  * Created by randy.thedford on 11/27/15.
  */
-public class ResultsActivity extends AppCompatActivity implements View.OnClickListener{
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener, SaveCallback{
 
     int mScore = 0;
 
@@ -24,12 +28,21 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         mScore = intent.getIntExtra("score", 0);
 
-        //TODO save to parse
-        Toast.makeText(ResultsActivity.this, "TODO Save to Parse", Toast.LENGTH_SHORT).show();
+        saveToParse();
+
+        TextView score = (TextView)findViewById(R.id.score);
+        score.setText( String.valueOf(mScore) );
 
         Button back = (Button)findViewById(R.id.back);
         back.setOnClickListener(this);
 
+    }
+
+    public void saveToParse(){
+        Highscore hs = new Highscore();
+        hs.setScore(mScore);
+
+        hs.saveInBackground(this);
     }
 
     @Override
@@ -43,5 +56,15 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         }
 
 
+    }
+
+    @Override
+    public void done(ParseException e) {
+        if (e != null){
+            Toast.makeText(this, "Error saving highscore", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Saved highscore to parse", Toast.LENGTH_SHORT).show();
+        }
     }
 }
