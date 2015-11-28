@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
     AnimatedSprite mRobot;
 
     long mTimer = 0;
-    long mMaxTimer = 10000;
+    long mMaxTimer = 60000;
 
     SoundPool mSoundPool;
 
@@ -106,11 +106,14 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
 
         //Check if robot escaped
         if (!RectF.intersects(mScreenRect, mRobot.getRect())){
-            //TODO change to random positions
-            mRobot.reset();
+            //change to random positions
+            mRobot.randomized(mScreenRect);
 
-            //TODO penalty
-
+            //penalty
+            mScore -= 50;
+            if (mScore < 0){
+                mScore = 0;
+            }
         }
     }
 
@@ -144,6 +147,7 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
             mSoundPool.play(mHitSound, 1, 1, 1, 0, 1);
         }
         else {
+
             //miss sound
             mSoundPool.play(mMissSound, 1, 1, 1, 0, 1);
 

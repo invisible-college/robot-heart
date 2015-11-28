@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by randy.thedford on 11/27/15.
@@ -16,8 +17,11 @@ public class AnimatedSprite {
     private float mX;
     private  float mY;
 
-    private float mMovementXPerSecond = 150;
-    private float mMovementYPerSecond = 150;
+    private float mMovementSpeed = 150;
+
+    private float mMovementXPerSecond = mMovementSpeed;
+    private float mMovementYPerSecond = mMovementSpeed;
+
 
     private ArrayList<Bitmap> mBitmaps;
 
@@ -25,6 +29,8 @@ public class AnimatedSprite {
     private long mTimeBetweenFrames = 150;
 
     private long mTimer = 0;
+
+    private Random mRandom;
 
 
     public AnimatedSprite(){
@@ -86,8 +92,59 @@ public class AnimatedSprite {
         return mRect.contains(x, y);
     }
 
-    public void reset(){
-        mX = 0;
-        mY = 0;
+    public void setAutoMoveX(float value){
+        mMovementXPerSecond = value;
+    }
+
+    public void setAutoMoveY(float value){
+        mMovementYPerSecond = value;
+    }
+
+    public void randomized(RectF screenRect){
+        if (mRandom == null){
+            mRandom = new Random();
+        }
+
+        int choice = mRandom.nextInt(4);
+
+        switch (choice){
+            case 0:
+                //set the robot to the left side
+                mX = -mRect.width();
+                mY = mRandom.nextInt( (int)(screenRect.height() - mRect.height()) );
+
+                //set movement to the right
+                setAutoMoveX(mMovementSpeed);
+                setAutoMoveY(0);
+                break;
+            case 1:
+                //set the robot to the right side
+                mX = screenRect.width();
+                mY = mRandom.nextInt( (int)(screenRect.height() - mRect.height()) );
+
+                //set movement to the left
+                setAutoMoveX(-mMovementSpeed);
+                setAutoMoveY(0);
+
+                break;
+            case 2:
+                //set the robot to the top side
+                mX = mRandom.nextInt( (int)(screenRect.width() - mRect.width()) );
+                mY = -mRect.height();
+
+                //set movement to the bottom
+                setAutoMoveX(0);
+                setAutoMoveY(mMovementSpeed);
+                break;
+            case 3:
+                //set the robot to the bottom side
+                mX = mRandom.nextInt( (int)(screenRect.width() - mRect.width()) );
+                mY = screenRect.height();
+
+                //set movement to the top
+                setAutoMoveX(0);
+                setAutoMoveY(-mMovementSpeed);
+                break;
+        }
     }
 }
