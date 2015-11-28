@@ -9,7 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name=".MenuActivity" >
+        <activity android:name=".MenuActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +18,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GameActivity">
+        <activity android:name=".GameActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".ResultsActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 

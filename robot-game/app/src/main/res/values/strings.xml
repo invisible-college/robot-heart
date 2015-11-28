@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Robot Game</string>
     <string name="play">Play</string>
+    <string name="score">Score</string>
+    <string name="score_colon">Score:</string>
+    <string name="highscore">Highscore</string>
+    <string name="view_highscores">View Highscores</string>
+    <string name="highscore_colon">Highscore:</string>
+    <string name="back">Back</string>
+    <string name="gameover">Game Over</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.invisiblecollege.robotgame;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -34,7 +35,7 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
     AnimatedSprite mRobot;
 
     long mTimer = 0;
-    long mMaxTimer = 60000;
+    long mMaxTimer = 5000;
 
     SoundPool mSoundPool;
 
@@ -128,14 +129,32 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
     }
 
     public void gameOver(){
-        Toast.makeText(this, "Game over TODO create results activity", Toast.LENGTH_SHORT).show();
-        mTimer = 0;
 
         //play a game over sound
         mSoundPool.play(mGameOverSound, 1, 1, 1, 0, 1);
 
-        //todo goto results activity;
+        // goto results activity;
+        Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra("score", mScore);
+        startActivity(intent);
+        mGameView.pause();
+        finish();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mGameView != null){
+            mGameView.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mGameView != null){
+            mGameView.resume();
+        }
     }
 
     private void userTapped(float x, float y){

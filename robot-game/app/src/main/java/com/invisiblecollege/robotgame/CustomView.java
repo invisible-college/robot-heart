@@ -55,8 +55,17 @@ public class CustomView extends View{
         mCallback.onUpdate(mElapsedTime);
         mCallback.onDraw(canvas);
 
-        this.postInvalidate();
+        if (mRunning) {
+            this.postInvalidate();
+        }
+    }
 
+    public void pause(){
+        mRunning = false;
+    }
+
+    public void resume(){
+        mRunning = true;
     }
 
     interface CustomViewEvents {
