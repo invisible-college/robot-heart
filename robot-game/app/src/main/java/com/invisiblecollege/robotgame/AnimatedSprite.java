@@ -11,20 +11,20 @@ import java.util.ArrayList;
  */
 public class AnimatedSprite {
 
-    RectF mRect = new RectF();
+    private RectF mRect = new RectF();
 
-    float mX;
-    float mY;
+    private float mX;
+    private  float mY;
 
-    float mMovementXPerSecond = 150;
-    float mMovementYPerSecond = 150;
+    private float mMovementXPerSecond = 150;
+    private float mMovementYPerSecond = 150;
 
-    ArrayList<Bitmap> mBitmaps;
+    private ArrayList<Bitmap> mBitmaps;
 
-    int mCurrentFrame = 0;
-    long mTimeBetweenFrames = 150;
+    private int mCurrentFrame = 0;
+    private long mTimeBetweenFrames = 150;
 
-    long mTimer = 0;
+    private long mTimer = 0;
 
 
     public AnimatedSprite(){
@@ -33,6 +33,10 @@ public class AnimatedSprite {
 
     public AnimatedSprite(ArrayList<Bitmap> bitmaps){
         mBitmaps = bitmaps;
+    }
+
+    public RectF getRect(){
+        return mRect;
     }
 
     public void setCurrentFrame(int frame){
@@ -80,5 +84,10 @@ public class AnimatedSprite {
 
     public boolean wasTapped(float x, float y){
         return mRect.contains(x, y);
+    }
+
+    public void reset(){
+        mX = 0;
+        mY = 0;
     }
 }

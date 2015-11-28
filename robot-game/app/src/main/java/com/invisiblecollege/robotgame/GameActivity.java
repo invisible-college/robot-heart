@@ -5,10 +5,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,12 +24,24 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
 
     CustomView mGameView;
 
+    RectF mScreenRect = new RectF();
+
     int mLoops = 0;
     int mScore = 0;
 
     Paint mPaint;
 
     AnimatedSprite mRobot;
+
+    long mTimer = 0;
+    long mMaxTimer = 10000;
+
+    SoundPool mSoundPool;
+
+    int mHitSound;
+    int mMissSound;
+    int mGameOverSound;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +72,46 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
 
         mRobot = new AnimatedSprite(robotBitmaps);
 
+        setupSound();
+
+    }
+
+    public void setupSound(){
+        //Check if we're running on Android 5.0
+        if (Build.VERSION.SDK_INT >= 21){
+            mSoundPool = new SoundPool.Builder().setMaxStreams(5).build();
+        }
+        else{
+            mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 1);
+        }
+
+        mHitSound = mSoundPool.load(this, R.raw.click1, 1);
+        mMissSound = mSoundPool.load(this, R.raw.click2, 1);
+        mGameOverSound = mSoundPool.load(this, R.raw.gameover, 1);
+
     }
 
     @Override
     public void onUpdate(long elapsedTime) {
+        mScreenRect.set(0, 0, mGameView.getWidth(), mGameView.getHeight());
         mLoops++;
+
+        mTimer += elapsedTime;
+
+        if (mTimer > mMaxTimer){
+            gameOver();
+        }
+
         mRobot.update(elapsedTime);
+
+        //Check if robot escaped
+        if (!RectF.intersects(mScreenRect, mRobot.getRect())){
+            //TODO change to random positions
+            mRobot.reset();
+
+            //TODO penalty
+
+        }
     }
 
     @Override
@@ -73,15 +124,28 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
         c.drawText("Score: " + String.valueOf(mScore), 100, 200, mPaint);
     }
 
+    public void gameOver(){
+        Toast.makeText(this, "Game over TODO create results activity", Toast.LENGTH_SHORT).show();
+        mTimer = 0;
+
+        //play a game over sound
+        mSoundPool.play(mGameOverSound, 1, 1, 1, 0, 1);
+
+        //todo goto results activity;
+
+    }
+
     private void userTapped(float x, float y){
         //Check to see if robot is pressed
         if (mRobot.wasTapped(x, y)){
             mScore += 10;
 
-            //add hit sound
+            //hit sound
+            mSoundPool.play(mHitSound, 1, 1, 1, 0, 1);
         }
         else {
-            //add miss sound
+            //miss sound
+            mSoundPool.play(mMissSound, 1, 1, 1, 0, 1);
 
         }
     }
