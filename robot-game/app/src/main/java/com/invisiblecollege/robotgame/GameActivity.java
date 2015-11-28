@@ -3,10 +3,13 @@ package com.invisiblecollege.robotgame;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
@@ -31,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
     int mScore = 0;
 
     Paint mPaint;
+    Paint mFloorPaint;
 
     AnimatedSprite mRobot;
 
@@ -59,16 +63,28 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
         mPaint.setColor(Color.BLACK);
         mPaint.setTextSize(50);
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "game_robot.ttf");
+
+        mPaint.setTypeface(typeface);
+
+        mFloorPaint = new Paint();
+
+        Bitmap floorBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.floor);
+
+        BitmapShader shader = new BitmapShader(floorBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+
+        mFloorPaint.setShader(shader);
+
         ArrayList<Bitmap> robotBitmaps = new ArrayList<>();
 
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot1) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot2) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot3) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot4) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot5) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot6) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot7) );
-        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot8) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_01) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_02) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_03) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_04) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_05) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_06) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_07) );
+        robotBitmaps.add( BitmapFactory.decodeResource(getResources(), R.mipmap.robot_move_08) );
 
 
         mRobot = new AnimatedSprite(robotBitmaps);
@@ -116,16 +132,29 @@ public class GameActivity extends AppCompatActivity implements CustomView.Custom
                 mScore = 0;
             }
         }
+
+        if (mRobot.isDead()){
+            if (mScreenRect.width() > 0 && mScreenRect.height() > 0){
+                mRobot.randomized(mScreenRect);
+            }
+        }
     }
 
     @Override
     public void onDraw(Canvas c) {
-        c.drawColor(Color.BLUE);
+        //c.drawColor(Color.BLUE);
+
+        c.drawPaint(mFloorPaint);
 
         mRobot.draw(c);
 
-        c.drawText("Loops: " + String.valueOf(mLoops), 100, 100, mPaint);
-        c.drawText("Score: " + String.valueOf(mScore), 100, 200, mPaint);
+        //c.drawText("Loops: " + String.valueOf(mLoops), 100, 100, mPaint);
+        c.drawText("Time: " + (60 - (mTimer / 1000)), 50, 50, mPaint);
+
+        String scoreText = "Score: " + String.valueOf(mScore);
+        float widthOfText = mPaint.measureText(scoreText);
+
+        c.drawText(scoreText, mScreenRect.width() - 50 - widthOfText, 50, mPaint);
     }
 
     public void gameOver(){

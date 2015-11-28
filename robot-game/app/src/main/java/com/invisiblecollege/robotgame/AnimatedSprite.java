@@ -32,6 +32,7 @@ public class AnimatedSprite {
 
     private Random mRandom;
 
+    public int mHP = 1;
 
     public AnimatedSprite(){
         mBitmaps = new ArrayList<>();
@@ -62,6 +63,9 @@ public class AnimatedSprite {
     }
 
     public void update(long elapsedTime){
+        if (isDead()){
+            return;
+        }
         if (elapsedTime > 100){
             elapsedTime = 100;
         }
@@ -85,11 +89,29 @@ public class AnimatedSprite {
     }
 
     public void draw(Canvas c){
+        if (isDead()){
+            return;
+        }
         c.drawBitmap(mBitmaps.get(mCurrentFrame), mX, mY, null);
     }
 
     public boolean wasTapped(float x, float y){
-        return mRect.contains(x, y);
+        if (mRect.contains(x, y)){
+            mHP--;
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isDead(){
+        if (mHP <= 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void setAutoMoveX(float value){
@@ -104,6 +126,8 @@ public class AnimatedSprite {
         if (mRandom == null){
             mRandom = new Random();
         }
+
+        mHP = mRandom.nextInt(3) + 1;
 
         int choice = mRandom.nextInt(4);
 
