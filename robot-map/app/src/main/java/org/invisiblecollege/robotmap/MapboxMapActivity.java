@@ -18,11 +18,14 @@ import java.util.List;
 public class MapboxMapActivity extends Activity {
 
     private MapView mapView;
+    private SavedPointsHelper savedPointsHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapbox_map);
+
+        savedPointsHelper = new SavedPointsHelper(this);
 
         mapView = (MapView) findViewById(R.id.mapboxMapView);
 
@@ -39,11 +42,15 @@ public class MapboxMapActivity extends Activity {
         // Continue to track the user location and update the position on the map
         //mapView.setMyLocationTrackingMode(MyLocationTracking.TRACKING_FOLLOW);
 
+        // Load previously saved points from internal storage and display on map
+        showAllSavedPoints();
+
         final Button button = (Button) findViewById(R.id.saveLocationButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Location myLocation = mapView.getMyLocation();
                 addPointToMap(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
+                savedPointsHelper.saveNewPoint(myLocation.getLatitude(), myLocation.getLongitude());
             }
         });
 
@@ -55,5 +62,12 @@ public class MapboxMapActivity extends Activity {
         mapView.addMarker(new MarkerOptions()
                 .position(new LatLng(locationToAdd.getLatitude(), locationToAdd.getLongitude()))
                 .title(latLngAsString));
+    }
+
+    private void showAllSavedPoints() {
+        List<LatLng> savedPoints = savedPointsHelper.getSavedPoints();
+        for (LatLng point : savedPoints) {
+            addPointToMap(point);
+        }
     }
 }
