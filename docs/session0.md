@@ -3,6 +3,17 @@
 So you want to write an Android app, but you don't know where to start?
 We're here to help, mob programming style.
 
+# Agenda
+
+* Introductions: who am I, why are we here
+* Download and install Android Studio
+* Create an empty project
+* Add a new text view and image.
+* Compile and run on an emulator / device
+* Create a new keystore
+* Sign the app and upload it
+* Celebrate! Where to go next.
+
 # Goals
 
 By the time you're done, you'll have
@@ -19,3 +30,13 @@ install. These are the packages you should select:
 
 ![SDK Packages 1](images/sdk-packages-1.png)
 ![SDK Packages 2](images/sdk-packages-2.png)
+
+# Generating a New Keystore
+
+# Publishing Your App
+
+Give your email address to Paul over slack and he'll invite you to be a release manager for the Invisible College account.
+[https://play.google.com/apps/publish/signup/](Sign up to publish on Google Play). You'll need a Google account.
+
+
+# Signing Your App
