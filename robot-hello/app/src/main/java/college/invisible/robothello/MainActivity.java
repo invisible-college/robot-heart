@@ -1,5 +1,7 @@
 package college.invisible.robothello;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,14 +10,51 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     enum Side { QUESTION, ANSWER };
 
+    private class ClickListener implements View.OnClickListener {
+
+        private RelativeLayout rootView;
+        private Context context;
+        private FloatingActionButton fab;
+        private int childIndex = 0;
+
+        public void setRootView(RelativeLayout rootView) {
+            this.rootView = rootView;
+        }
+
+        public void setContext(Context context) {
+            this.context = context;
+        }
+
+        public void setFab(FloatingActionButton fab) {
+            this.fab = fab;
+        }
+
+        @Override
+        public void onClick(View view) {
+            TextView tv = new TextView(this.context);
+            tv.setText(Integer.toString(childIndex));
+            childIndex += 1;
+            tv.setTextColor(Color.DKGRAY);
+            this.rootView.addView(tv);
+                /*
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                        */
+        }
+
+    };
+
+
     private TextView tv;
     private Side showSide = Side.QUESTION; // Start out showing question by default
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +63,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        RelativeLayout rootView = (RelativeLayout) this.findViewById(R.id.relative_view);
+        Context context = rootView.getContext();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ClickListener clickListener = new ClickListener();
+
+        clickListener.setContext(context);
+        clickListener.setFab(fab);
+        clickListener.setRootView(rootView);
+        fab.setOnClickListener(clickListener);
+
 
         // Populate the textview once here to be used later in onClick
         tv = (TextView) findViewById(R.id.hello_view);
