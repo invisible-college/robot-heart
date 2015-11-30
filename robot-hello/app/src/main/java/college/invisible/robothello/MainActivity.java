@@ -8,8 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    enum Side { QUESTION, ANSWER };
+
+    private TextView tv;
+    private Side showSide = Side.QUESTION; // Start out showing question by default
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // Populate the textview once here to be used later in onClick
+        tv = (TextView) findViewById(R.id.hello_view);
+        String helloString = getResources().getString(R.string.hello_string);
+        tv.setText(helloString);
     }
 
     @Override
@@ -48,5 +59,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v) {
+        TextView tv = (TextView) v;
+
+        // Toggle the QUESTION to the ANSWER or vice versa
+        if (showSide == Side.QUESTION) {
+            showSide = Side.ANSWER;
+            String goodbyeString = getResources().getString(R.string.goodbye_string);
+            tv.setText(goodbyeString);
+        } else {
+            showSide = Side.QUESTION;
+            String helloString = getResources().getString(R.string.hello_string);
+            tv.setText(helloString);
+        }
     }
 }
