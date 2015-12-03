@@ -17,12 +17,20 @@ public class MainActivity extends AppCompatActivity {
 
     enum Side { QUESTION, ANSWER };
 
+    /* Click listener for floating action button */
     private class ClickListener implements View.OnClickListener {
 
         private RelativeLayout rootView;
         private Context context;
         private FloatingActionButton fab;
-        private int childIndex = 0;
+        private int currentId;
+        private int previousId;
+        private int index;
+
+        public ClickListener(int previousId) {
+            this.previousId = previousId;
+            this.index = 0;
+        }
 
         public void setRootView(RelativeLayout rootView) {
             this.rootView = rootView;
@@ -34,15 +42,35 @@ public class MainActivity extends AppCompatActivity {
 
         public void setFab(FloatingActionButton fab) {
             this.fab = fab;
+            this.fab.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             TextView tv = new TextView(this.context);
-            tv.setText(Integer.toString(childIndex));
-            childIndex += 1;
-            tv.setTextColor(Color.DKGRAY);
-            this.rootView.addView(tv);
+            tv.setText(Integer.toString(this.index));
+
+            tv.setTextColor(Color.GREEN);
+            RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+            );
+
+            TextView previousTv = (TextView) findViewById(this.previousId);
+            previousTv.setText("Obsolete!");
+
+            // Make it below the previous child, with id minus one
+            rl.addRule(RelativeLayout.BELOW, this.previousId);
+            this.currentId = this.previousId + 1;
+            System.out.println("index" + this.index);
+            Snackbar.make(view, "index " + this.index, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            tv.setId(this.currentId);
+            System.out.println("Previous id" + this.previousId);
+            this.previousId = this.currentId;
+            this.index += 1;
+
+            this.rootView.addView(tv, rl);
                 /*
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -66,19 +94,21 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout rootView = (RelativeLayout) this.findViewById(R.id.relative_view);
         Context context = rootView.getContext();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        ClickListener clickListener = new ClickListener();
-
-        clickListener.setContext(context);
-        clickListener.setFab(fab);
-        clickListener.setRootView(rootView);
-        fab.setOnClickListener(clickListener);
 
 
         // Populate the textview once here to be used later in onClick
         tv = (TextView) findViewById(R.id.hello_view);
         String helloString = getResources().getString(R.string.hello_string);
         tv.setText(helloString);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        // Create the click listener with the previous text view
+        ClickListener clickListener = new ClickListener(tv.getId());
+        clickListener.setContext(context);
+        clickListener.setFab(fab); // this also sets the click listener on the fab
+        clickListener.setRootView(rootView);
+
     }
 
     @Override
