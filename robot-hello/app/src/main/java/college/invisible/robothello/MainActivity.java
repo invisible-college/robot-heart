@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
         clickListener.setFab(fab); // this also sets the click listener on the fab
         clickListener.setRootView(rootView);
 
+        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.flash_card_list);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+
+        FlashCardAdapter fca = new FlashCardAdapter(this);
+        List<FlashCard> fcl = new ArrayList<>();
+        fcl.add(new FlashCard("What is round and contains gold?", "An egg"));
+        fcl.add(new FlashCard("Question 2", "Answer 2"));
+        fca.addFlashCards(fcl);
+        rv.setAdapter(fca);
     }
 
     @Override
