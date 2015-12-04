@@ -33,6 +33,20 @@ This version is just an agreement between apps, that are written/compiled to dep
 
 Android numbers each API, sometimes called an API Level, which developers are exposed to, and these have corresponding version numbers which users see, and also cute codenames that correspond to delicious desserts whose name begin with consecutive letters of the alphabet. Here is a table at the time of this writing.
 
+Version	Codename	API	Distribution
+2.2	Froyo	8	0.2%
+2.3.3 -
+2.3.7	Gingerbread	10	3.8%
+4.0.3 -
+4.0.4	Ice Cream Sandwich	15	3.3%
+4.1.x	Jelly Bean	16	11.0%
+4.2.x	17	13.9%
+4.3	18	4.1%
+4.4	KitKat	19	37.8%
+5.0	Lollipop	21	15.5%
+5.1	22	10.1%
+6.0	Marshmallow	23	0.3%
+
 
 
 For these tutorials, we will concentrate on API Level 23, which corresponds to consumer
