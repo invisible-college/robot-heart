@@ -1,7 +1,12 @@
+Robot Heart: learn Android
+==========================
+
 # Session 0: Write your first Android app
 
 So you want to write an Android app, but you don't know where to start?
 We're here to help, mob programming style.
+These notes are meant to supplement the first workshop of the
+Robot Heart, another fine course from the [Invisible College](http://invisible.college).
 
 # Goals
 
@@ -10,6 +15,7 @@ By the time you're done, you'll have
 * a working Android dev environment installed on your computer (running Mac, Windows, or Linux)
 * a working "Hello World" Android app that runs in an emulator
 * the same app that you can download from the Google Play store.
+* understand the basic process of Android development and the terms SDK, API, IDE.
 
 <!--
 TODO: waiting to hear back from workshop participant
@@ -31,25 +37,26 @@ The process of turning your source code (written in Java, and depending on Andro
 
 This version is just an agreement between apps, that are written/compiled to depend on certain libraries, and different phones which have those libraries installed and ready-to-use. This version has a fancy name "Application Programming Interface", or API, and is sometimes called a *target* because it is something you aim your development efforts towards (like an arrow).
 
-Android numbers each API, sometimes called an API Level, which developers are exposed to, and these have corresponding version numbers which users see, and also cute codenames that correspond to delicious desserts whose name begin with consecutive letters of the alphabet. Here is a table at the time of this writing.
+Android numbers each API, sometimes called an API Level, which developers are exposed to, and these have corresponding version numbers which users see, and also cute codenames that correspond to delicious desserts whose name begin with consecutive letters of the alphabet. Here is a table at the time of this writing (December 2015) (Source: [Android Developer Dashboards](http://developer.android.com/about/dashboards/index.html)).
 
-Version	Codename	API	Distribution
-2.2	Froyo	8	0.2%
-2.3.3 -
-2.3.7	Gingerbread	10	3.8%
-4.0.3 -
-4.0.4	Ice Cream Sandwich	15	3.3%
-4.1.x	Jelly Bean	16	11.0%
-4.2.x	17	13.9%
-4.3	18	4.1%
-4.4	KitKat	19	37.8%
-5.0	Lollipop	21	15.5%
-5.1	22	10.1%
-6.0	Marshmallow	23	0.3%
+| Version	| Codename	            | API   | Distribution
+|-----------|-----------------------|-------|-------------
+| 2.2	    | Froyo	                | 8     | 0.2%
+| 2.3.3     | -                     |       |
+| 2.3.7     | Gingerbread           | 10    | 3.8%
+| 4.0.3     | -                     |       |
+| 4.0.4     | Ice Cream Sandwich	| 15	| 3.3%
+| 4.1.x     | Jelly Bean            | 16	| 11.0%
+| 4.2.x	    | -                     | 17	| 13.9%
+| 4.3       | -                     | 18	| 4.1%
+| 4.4       | KitKat                | 19	| 37.8%
+| 5.0	    | Lollipop	            | 21	| 15.5%
+| 5.1       | -                     | 22	| 10.1%
+| 6.0       | Marshmallow           | 23    | 0.3%
 
 
 
-For these tutorials, we will concentrate on API Level 23, which corresponds to consumer
+For these tutorials, we will concentrate on API Level 23, on the assumption that by the time you complete the course, Marshmallow will represent a more sizable fraction of available devices that you will wish to target.
 
 # Pre-work
 
@@ -59,6 +66,14 @@ install. These are the packages you should select:
 
 ![SDK Packages 1](images/sdk-packages-1.png)
 ![SDK Packages 2](images/sdk-packages-2.png)
+
+This may take several minutes and up to an hour, depending on how fast your computer and network connection are. Leave ample time before the workshop to do this step, so that you can be prepared to participate.
+
+# Creating an Empty Project
+
+The simplest app you can think of is one with just a blank screen with some words. By ancient tradition, these words must be "Hello World". Start by running Android Studio and choosing "Create new project".
+
+
 
 # Generating an APK
 
