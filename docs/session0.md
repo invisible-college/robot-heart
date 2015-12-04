@@ -11,7 +11,31 @@ By the time you're done, you'll have
 * a working "Hello World" Android app that runs in an emulator
 * the same app that you can download from the Google Play store.
 
-It will look like 
+<!--
+TODO: waiting to hear back from workshop participant
+ It will look like this spiffy Hello World app, written by one of our first workshop participants with his permission (thanks !)
+-->
+
+# Software Development Kit
+
+You are probably already a user of Android apps, but you are now entering the hallowed ranks of Android developers. To do this, you'll need extra software to help you develop apps called a Software Development Kit (SDK). An SDK is a collection of 
+* libraries (pre-written, pre-packaged functionality that you can include in your own app)
+* tools (smaller programs that perform a specific task on your android app)
+ * examples: the debug bridge, the monitor, the package manager
+
+Each of the above (libraries and tools) have a particular version that is designed to work with each other, and to target a particular version of Android that is "out in the wild", that is, deployed on people's smartphones and mobile devices.
+
+The process of turning your source code (written in Java, and depending on Android libraries) into an Android app is called *compilation*.
+
+# Application Programming Interfaces
+
+This version is just an agreement between apps, that are written/compiled to depend on certain libraries, and different phones which have those libraries installed and ready-to-use. This version has a fancy name "Application Programming Interface", or API, and is sometimes called a *target* because it is something you aim your development efforts towards (like an arrow).
+
+Android numbers each API, sometimes called an API Level, which developers are exposed to, and these have corresponding version numbers which users see, and also cute codenames that correspond to delicious desserts whose name begin with consecutive letters of the alphabet. Here is a table at the time of this writing.
+
+
+
+For these tutorials, we will concentrate on API Level 23, which corresponds to consumer
 
 # Pre-work
 
@@ -43,4 +67,8 @@ To upload your app, you need to associate it with an account. This will tell you
 Normally, Google charges $25 to open a new Google Play Developer account. However, for participating in an Invisible College workshop, you'll receive an email invite to our shared account which will let you practice publishing apps for free. If you haven't received your invitation, contact your instructor.
 
 
+## Adding a new application
 
+## Filling out the necessary information
+
+### 
