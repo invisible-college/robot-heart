@@ -74,10 +74,12 @@ This may take several minutes and up to an hour, depending on how fast your comp
 The simplest app you can think of is one with just a blank screen with some words. By ancient tradition, these words must be "Hello World". Start by running Android Studio and choosing "Create new project".
 
 ![Create new project](images/create-new-project.png)
-
+![Configure new project](images/config-new-project.png)
+![Target android device](images/target-android-device.png)
 
 Choose a blank Activity, which is the main building block of an Android app's operation.
 
+![Configure new project](images/config-new-project.png)
 
 
 # Generating an APK
