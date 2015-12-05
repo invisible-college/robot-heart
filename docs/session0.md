@@ -119,7 +119,11 @@ In either case, whether you accept the Invisible College invite or create your o
 
 ![Log into your google account](images/google-login.png)
 
+After logging in, you should see a list of all apps that you have permission to edit on this account.
+
+
 ## Adding a new application
+
 
 ## Filling out the necessary information
 
