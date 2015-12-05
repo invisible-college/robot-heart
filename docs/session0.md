@@ -103,6 +103,7 @@ To upload your app, you need to associate it with an account. This will tell you
 Normally, Google charges $25 to open a new Google Play Developer account. However, for participating in an Invisible College workshop, you'll receive an email invite to our shared account which will let you practice publishing apps for free. If you haven't received your invitation, contact your instructor.
 
 
+
 ## Adding a new application
 
 ## Filling out the necessary information
