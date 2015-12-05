@@ -58,6 +58,15 @@ Android numbers each API, sometimes called an API Level, which developers are ex
 
 **For these tutorials, we will concentrate on API Level 23**, on the assumption that by the time you complete the course, Marshmallow will represent a more sizable fraction of available devices that you will wish to target.
 
+# Integrated Development Environment
+
+There are several tools that are necessary to develop any program, including an Android app. These are:
+* a text editor: the most basic tool in a programmer's arsenal, it lets you create, edit, and save plaintext: characters without any display formatting. Common text editors are Sublime Text, emacs, vi, Atom, Brackets, Notepad++, Programmer's Notepad, Textmate, and TextWrangler.
+* a compiler: a tool that converts your plaintext source code into executable binaries or interpretable bytecode.
+* a debugger: a tool that lets you stop your program in the middle of execution, inspect its state (including the values of any variables), and step through code. Usually used to find errors (bugs).
+
+Originally, these tools were all separate programs that you had to install, configure, and run yourself, usually from the command-line. This gave you the most control, power, and speed, once you learned all the different commands. However, all of these tools make it difficult to get started and to remember all the different parts. To increase programmer productivity, a new kind of program called an Integrated Development Environment combined all of the functions above into a single program, or more usually, took care of orchestrating the text editor, compiler, and debugger behind-the-scenes for you, so that you as the human programmer could concentrate on the creative, truly difficult aspects of making a greap app.
+
 # Pre-work
 
 * Download and install the [http://developer.android.com/sdk/index.html](Android Studio IDE 1.4), which also includes the Android SDK.
@@ -79,7 +88,7 @@ The simplest app you can think of is one with just a blank screen with some word
 
 Choose a blank Activity, which is the main building block of an Android app's operation.
 
-![Configure new project](images/config-new-project.png)
+![Configure new project](images/blank-activity.png)
 
 
 # Generating an APK
