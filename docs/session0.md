@@ -113,6 +113,11 @@ Normally, Google charges $25 to open a new Google Play Developer account. Howeve
 
 ![Google Play invite email](images/play-invite.png)
 
+You are of course, welcome to create your own Google Play Account, especially if you are ready to start publishing production-quality apps on your own.
+
+In either case, whether you accept the Invisible College invite or create your own Play developer account, you'll need to log into your Google account. Unfortunately, that means you'll have to create a Google account if you don't already have one (in general, I am opposed to creating new accounts and giving away your personal information if you don't have to).
+
+![Log into your google account](images/google-login.png)
 
 ## Adding a new application
 
