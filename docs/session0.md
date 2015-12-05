@@ -56,7 +56,7 @@ Android numbers each API, sometimes called an API Level, which developers are ex
 
 
 
-For these tutorials, we will concentrate on API Level 23, on the assumption that by the time you complete the course, Marshmallow will represent a more sizable fraction of available devices that you will wish to target.
+**For these tutorials, we will concentrate on API Level 23**, on the assumption that by the time you complete the course, Marshmallow will represent a more sizable fraction of available devices that you will wish to target.
 
 # Pre-work
 
@@ -74,6 +74,7 @@ This may take several minutes and up to an hour, depending on how fast your comp
 The simplest app you can think of is one with just a blank screen with some words. By ancient tradition, these words must be "Hello World". Start by running Android Studio and choosing "Create new project".
 
 ![Create new project](images/create-new-project.png)
+
 
 Choose a blank Activity, which is the main building block of an Android app's operation.
 
