@@ -103,7 +103,17 @@ Most of your final users or customers will never see this file. They'll just go 
 
 The final hurdle to unveiling your app to the world is making it available on an online app store. Google's Play Store is the most popular store, so we'll concentrate on that during this tutorial.
 
+Once you have an account, you can just go to the store directly and skip the follow section on Creating an account.
+
+[Google Play Developer Console](play.google.com/apps/publish)
+
 Google is the principal company promoting Android development. It also comes pre-installed on all current Android phones. However, Amazon's AppStore is a recent competitor, and one that comes preinstalled on Kindle devices, and more competition is always good for the users. We'll cover the AppStore in later chapters of this book, but the process will follow the same general steps.
+
+## Legalese
+
+I am not a lawyer, so nothing in this tutorial should be construed as legal advice. Here's where you are going to have to agree to licenses and agreements which may have legal consequences. To publish apps on the Google Play store (or to use pretty much any software these days), you have to agree to a set of rules.
+
+I've read these rules and have decided that they are acceptable in order for me to distribute apps on the Google Play store. But you should also read the rules and decide for yourself, even if you join the Invisible College account, since you are still responsible for apps that you publish.
 
 ## Creating an account
 
@@ -118,6 +128,13 @@ You are of course, welcome to create your own Google Play Account, especially if
 In either case, whether you accept the Invisible College invite or create your own Play developer account, you'll need to log into your Google account. Unfortunately, that means you'll have to create a Google account if you don't already have one (in general, I am opposed to creating new accounts and giving away your personal information if you don't have to).
 
 ![Log into your google account](images/google-login.png)
+
+There are now several steps to complete to activate your account.
+You should read the Google Play Developer Distribution, which governs the rules under which you can publish apps to the Google Play and your rights and responsibilities. If you agree, check the box and continue. (If you don't agree, unfortunately you can't continue. See legal disclaimer above!)
+
+![Agree to the Google Play agreement](images/play-agree.png)
+
+
 
 ## Adding a new application
 
