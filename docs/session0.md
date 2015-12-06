@@ -112,8 +112,11 @@ To upload your app, you need to associate it with an account. This will tell you
 Normally, Google charges $25 to open a new Google Play Developer account. However, for participating in an Invisible College workshop, you'll receive an email invite to our shared account which will let you practice publishing apps for free. If you haven't received your invitation, contact your instructor.
 
 ![Google Play invite email](images/play-invite.png)
+![After you accept your invite](images/accepted-invite.png)
 
 You are of course, welcome to create your own Google Play Account, especially if you are ready to start publishing production-quality apps on your own.
+
+![After you've created a new Google Play developer account.](images/play-new-account.png)
 
 In either case, whether you accept the Invisible College invite or create your own Play developer account, you'll need to log into your Google account. Unfortunately, that means you'll have to create a Google account if you don't already have one (in general, I am opposed to creating new accounts and giving away your personal information if you don't have to).
 
@@ -121,10 +124,15 @@ In either case, whether you accept the Invisible College invite or create your o
 
 After logging in, you should see a list of all apps that you have permission to edit on this account.
 
+![View all apps](images/play-all-apps.png)
 
 ## Adding a new application
 
+After you've generated your app, click the upload button.
+
+![Dialog to upload your APK](images/upload-apk.png)
 
 ## Filling out the necessary information
+
 
 ### 
