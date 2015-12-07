@@ -1,6 +1,7 @@
 package college.invisible.robothello;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     enum Side { QUESTION, ANSWER };
+    public static String EXTRA_MESSAGE = "college.invisible.MainActivity.MESSAGE";
 
     /* Click listener for floating action button */
     private class ClickListener implements View.OnClickListener {
@@ -126,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
         fcl.add(new FlashCard("Question 2", "Answer 2"));
         fca.addFlashCards(fcl);
         rv.setAdapter(fca);
+
+        Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, "Seed message");
     }
 
     @Override

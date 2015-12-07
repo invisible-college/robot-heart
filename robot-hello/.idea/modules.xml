@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/robot-hello.iml" filepath="$PROJECT_DIR$/robot-hello.iml" />
+      <module fileurl="file://$PROJECT_DIR$/textview/textview.iml" filepath="$PROJECT_DIR$/textview/textview.iml" />
     </modules>
   </component>
 </project>

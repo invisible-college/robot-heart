@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':textview'
+project(':textview').projectDir = new File('textview')
