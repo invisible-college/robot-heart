@@ -117,11 +117,17 @@ Next, you will need to sign your APK with cryptographic information called a key
 
 You can have multiple keys for signing different apps, or even different versions of the same app (different modules or different build types). A collection of keys is known as a *keystore*. There are two kinds of passwords associated with publishing apps. Each keystore has a password that protects the entire collection. Within the keystore, each key also has its own password. This prevents someone who has access to your computer from publishing apps under your name without your permission. All of the passwords above should be different from each other. You probably already store a lot of passwords for all the accounts you have at various websites and online services, so you may use a password manager software, like LastPass or 1Password or Keepass. You can use this password manager to keep track of your Android keystore passwords as well. I personally use Evernote, in a single note entitled "Android Keystore Passwords" and encrypt all my keystore and key passwords in it.
 
-If you already have a keystore, perhaps because you've developed other Android apps in the past, you can go head and select that keystore now by navigating to it. (Be sure you remember the keystore password).
+If you already have a keystore, perhaps because you've developed other Android apps in the past, you can go head and select that keystore now by navigating to it and selecting the `Choose Existing` button. (You'll need the keystore password from when you created the keystore). It's not necessary to check "Remember passwords" right now, but if you do this a lot in the future, you can check it temporarily to save time.
 
 ![Choose or create a keystore](images/generate-keystore-1.png)
 
-If you don't already have a keystore, because this is your very first time, go ahead and 
+If you don't already have a keystore, because this is your very first time, go ahead and choose the `Create new` button instead.
+
+In either case, you will need to choose a location and filename for either your new keystore or your existing keystore. Clicking the `...` button will bring up a filesystem dialog box that will let you navigate the files on your computer. Type the desired filename at the bottom of the dialog box, and give it a `.jks` filename extension. Then choose `OK`.
+
+![Create a new keystore](images/create-new-keystore.png)
+
+Now that you have a keystore, you will want to create a new key for this app. Fill in the `Alias` and choose another secure password for the `Password` and `Confirm` blanks. Accept the default validity of 25 years, and you can also fill in the default `Organizational Unit`, `Organization`, `City or Locality`, `State of Province`, or `Country Code`. You should of course, fill in your own first and last name to give yourself proper credit.
 
 ![Create a new key](images/create-new-key.png)
 
