@@ -56,7 +56,7 @@ Android numbers each API, sometimes called an API Level, which developers are ex
 
 
 
-**For these tutorials, we will concentrate on API Level 23**, on the assumption that by the time you complete the course, Marshmallow will represent a more sizable fraction of available devices that you will wish to target.
+**For these tutorials, we will concentrate on API Level 22**, on the assumption that by the time you complete the course, Lollipop will represent a more sizable fraction of available devices that you will wish to target. And of course, the author's smartphone right now is running API 22 :smile: 
 
 # Integrated Development Environment
 
@@ -98,6 +98,14 @@ An APK is an Android package file, the actual bits that take up space on your ha
 It's also the filename extension that you'll see on this file like `robot-heart.apk`
 
 Most of your final users or customers will never see this file. They'll just go to a store to download your app. But while you're in beta (development phase), you may need to distribute your app directly by attaching it to emails, forum posts, Slack chats, on an SD card, USB flash stick, and more. This section will teach you how to create such a file from the Android app that you currently have running inside Android Studio.
+
+Make sure that your app has built without errors, and runs correctly the way you intend in the emulator and/or your actual device. If not, go back to a previous section and continue debugging, ask an instructor, or share your screen and ask a classmate on the Slack channel or the next group video chat.
+
+Within Android Studio, from the `Build` menu, click `Generate Signed APK...`.
+
+![Generate a signed APK](images/generate-apk.png)
+
+
 
 # Google Play Store
 
