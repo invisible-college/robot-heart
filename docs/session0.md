@@ -84,7 +84,7 @@ The simplest app you can think of is one with just a blank screen with some word
 
 ![Create new project](images/create-new-project.png)
 ![Configure new project](images/config-new-project.png)
-![Target android device](images/target-android-device.png)
+![Target android device](images/target-android-devices.png)
 
 Choose a blank Activity, which is the main building block of an Android app's operation.
 
@@ -131,7 +131,19 @@ Now that you have a keystore, you will want to create a new key for this app. Fi
 
 ![Create a new key](images/create-new-key.png)
 
+At the end of this process, you'll have a keystore and key chosen, with the correct passwords filled in, which will look like the dialog below.
 
+![Keystore and key filled out](images/generate-keystore-2.png)
+
+You'll click `Next` to select the build type, which is either `debug` or `release`. Debug builds contain extra information that make it easy to fix errors using the Android monitor and other tools. This is usually what you'll email or give to friends and beta testers. However, to upload to the Google Play Store, you'll need a release build. Don't worry about app flavors for now.
+
+![Choose a build type for your APK](images/generate-build-type.png)
+
+Finally, your app will build as Gradle grinds slowly and deliberately. As it's building, you'll see messages displaying for the target 
+
+![Generate release APK gradle messages](images/.png)
+
+![APK finished toast notification](images/generate-)
 
 # Google Play Store
 
