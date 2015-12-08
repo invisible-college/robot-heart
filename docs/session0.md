@@ -101,9 +101,29 @@ Most of your final users or customers will never see this file. They'll just go 
 
 Make sure that your app has built without errors, and runs correctly the way you intend in the emulator and/or your actual device. If not, go back to a previous section and continue debugging, ask an instructor, or share your screen and ask a classmate on the Slack channel or the next group video chat.
 
+## Start Generating the Build
+
 Within Android Studio, from the `Build` menu, click `Generate Signed APK...`.
 
 ![Generate a signed APK](images/generate-apk.png)
+
+Choose a module (in this case, the default one called `app`) to be the primary one in your app, the one that is the entry point.
+
+![Choose a module to generate an APK one](images/generate-module.png)
+
+## Keys, Signing, and Passwords
+
+Next, you will need to sign your APK with cryptographic information called a key. Just like a key in real life, a cryptographic key should be kept safe, and only lets the right person (you) access certain items (in this case, the ability to publish an app).
+
+You can have multiple keys for signing different apps, or even different versions of the same app (different modules or different build types). A collection of keys is known as a *keystore*. There are two kinds of passwords associated with publishing apps. Each keystore has a password that protects the entire collection. Within the keystore, each key also has its own password. This prevents someone who has access to your computer from publishing apps under your name without your permission. All of the passwords above should be different from each other. You probably already store a lot of passwords for all the accounts you have at various websites and online services, so you may use a password manager software, like LastPass or 1Password or Keepass. You can use this password manager to keep track of your Android keystore passwords as well. I personally use Evernote, in a single note entitled "Android Keystore Passwords" and encrypt all my keystore and key passwords in it.
+
+If you already have a keystore, perhaps because you've developed other Android apps in the past, you can go head and select that keystore now by navigating to it. (Be sure you remember the keystore password).
+
+![Choose or create a keystore](images/generate-keystore-1.png)
+
+If you don't already have a keystore, because this is your very first time, go ahead and 
+
+![Create a new key](images/create-new-key.png)
 
 
 
