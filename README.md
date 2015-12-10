@@ -8,7 +8,7 @@ We've designed this course for you. Someone who's curious about Android, the mob
 
 ## Pre-requisites
 
-This is course is for people who already know Java and need a review, or people who know another programming language and just need to practice syntax. If you need a gentler introduction, try Codecademy's new Java track.
+This is course is for people who already know Java and need a review, or people who know another programming language and just need to practice syntax. If you need a gentler introduction, try Codecademy's new Java track or wait for our upcoming class: Java basics.
 
 In this 9-session, 3 week course, you’ll learn the following key concepts. You’ll go from being a Java novice to uploading three Android apps to an online store, ready for your adoring fans and future customers. Our teaching style will use mob programming so that the whole class codes together, learns by practicing, and stays engaged the whole time. You'll receive individual, hands-on attention from our three expert mentors with years of industry and teaching experience.
 
@@ -16,44 +16,38 @@ In this 9-session, 3 week course, you’ll learn the following key concepts. You
 ### Android Basics (`robot-hello`)
 
 #### Session 0
-Monday, Nov 30. 7-9pm PST
-Setting up your Android dev environment. Installing the SDK. Using Android Studio, Gradle, Monitor, AVD. Android hello world and console output.
+This session!
+Setting up your Android dev environment. Installing the SDK. Using Android Studio, Gradle, Monitor, AVD. Android hello world and console output. Generating an APK and publishing it to the Google Play store.
 
 #### Session 1
-Wednesday, Dec 2. 7-9pm PST
-Android flash cards using textviews. Using Parse for online data storage and retrieval. Listviews.
+Android flash cards using textviews. RecyclerViews and ListAdapters.
 
 #### Session 2
-Friday, Dec 4. 7-9pm PST
-Parse queries and updating. Taking pictures with the built-in camera.
+Using Parse for online data storage and retrieval.
+Parse queries and updating.
 
 #### Session 3
-Monday, Dec 7. 7-9pm PST
+Taking pictures with the built-in camera.
 Recording sound via the built-in microphone. Playing back sound.
 
 ### Android Maps
 
 #### Session 4
-Wednesday, Dec 9. 7-9pm PST
-Location Services and Geographical Input, Displaying map views. MapBox API
+Location Services and Geographical Input, Displaying map views. Google Maps vs. MapBox API
 
 #### Session 5
-Friday, Dec 11. 7-9pm PST
-Offline Storage with SQLite MapBox API
+Geographical Tagging. MapBox API
 
 #### Session 6
-Monday, Dec 14. 7-9pm PST
-Geographical Tagging. MapBox API
+Offline Storage with SQLite MapBox API
 
 ### Android Games
 
 #### Session 7
-Wednesday, Dec 16. 7-9pm PST
 Android for Games. Custom views and layouts.
 
 #### Session 8
-Friday, Dec 18. 7-9pm PST.
-Android for Games.
+Android for Games. Animating sprites, click interface.
 
 ## About the course designers
 
