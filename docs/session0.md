@@ -1,12 +1,14 @@
-Robot Heart: learn Android
+Robot Heart: Learn Android
 ==========================
 
 # Session 0: Write your first Android app
 
 So you want to write an Android app, but you don't know where to start?
-We're here to help, mob programming style.
-These notes are meant to supplement the first workshop of the
-Robot Heart, another fine course from the [Invisible College](http://invisible.college).
+
+We're here to help!
+These notes are meant to be a step-by-step tutorial to accompany the first workshop of the
+Robot Heart, another fine course from the [Invisible College](http://invisible.college). For best results, we recommend you use these notes in a group workshop led by an experienced instructor. Our main teaching technique is [mob programming](http://mobprogramming.org), a generalization of pair programming that focuses on social engagement, asking questions, and learning-by-typing.
+However, you are welcome to use these notes for your own self-study, before or after the workshop.
 
 # Goals
 
