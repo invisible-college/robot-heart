@@ -92,6 +92,24 @@ Choose a blank Activity, which is the main building block of an Android app's op
 
 ![Configure new project](images/blank-activity.png)
 
+# Coding
+
+Our goals are to:
+
+# Create a blank Activity with a TextView.
+# Have that TextView display "Hello World" from a string resource.
+# Register an onClick handler, so that when you click on it, it says "Goodbye World"
+
+For our special holiday workshop, we are going to try something a little more ambitious
+
+# Create a blank Activity.
+# Display a TextView that Says "Happy Holidays" or "Merry Christmas"
+# Display family pictures with ImageViews arranged on a RelativeLayout.
+# Draw lines between them in a family tree diagram.
+
+Bonus stretch goal:
+
+# Respond to a user click on an image by displaying that family member's name.
 
 # Generating an APK
 
