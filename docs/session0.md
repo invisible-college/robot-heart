@@ -26,7 +26,7 @@ TODO: waiting to hear back from workshop participant
 
 # Software Development Kit
 
-You are probably already a user of Android apps, but you are now entering the hallowed ranks of Android developers. To do this, you'll need extra software to help you develop apps called a Software Development Kit (SDK). An SDK is a collection of 
+You are probably already a user of Android apps, but you are now entering the hallowed ranks of Android developers. To do this, you'll need extra software to help you develop apps called a Software Development Kit (SDK). An SDK is a collection of
 * libraries (pre-written, pre-packaged functionality that you can include in your own app)
 * tools (smaller programs that perform a specific task on your android app)
  * examples: the debug bridge, the monitor, the package manager
@@ -58,7 +58,7 @@ Android numbers each API, sometimes called an API Level, which developers are ex
 
 
 
-**For these tutorials, we will concentrate on API Level 22**, on the assumption that by the time you complete the course, Lollipop will represent a more sizable fraction of available devices that you will wish to target. And of course, the author's smartphone right now is running API 22 :smile: 
+**For these tutorials, we will concentrate on API Level 22**, on the assumption that by the time you complete the course, Lollipop will represent a more sizable fraction of available devices that you will wish to target. And of course, the author's smartphone right now is running API 22 :smile:
 
 # Integrated Development Environment
 
@@ -160,11 +160,11 @@ You'll click `Next` to select the build type, which is either `debug` or `releas
 
 ![Choose a build type for your APK](images/generate-build-type.png)
 
-Finally, your app will build as Gradle grinds slowly and deliberately. As it's building, you'll see messages displaying for the target 
+Finally, your app will build as Gradle grinds slowly and deliberately. As it's building, you'll see messages displaying for the target
 
 ![Generate release APK gradle messages](images/.png)
 
-![APK finished toast notification](images/generate-)
+![APK finished toast notification](images/generate-apk.png)
 
 # Google Play Store
 
@@ -189,8 +189,11 @@ To upload your app, you need to associate it with an account. This will tell you
 Normally, Google charges $25 to open a new Google Play Developer account. However, for participating in an Invisible College workshop, you'll receive an email invite to our shared account which will let you practice publishing apps for free. If you haven't received your invitation, contact your instructor.
 
 ![Google Play invite email](images/play-invite.png)
+![After you accept your invite](images/accepted-invite.png)
 
 You are of course, welcome to create your own Google Play Account, especially if you are ready to start publishing production-quality apps on your own.
+
+![After you've created a new Google Play developer account.](images/play-new-account.png)
 
 In either case, whether you accept the Invisible College invite or create your own Play developer account, you'll need to log into your Google account. Unfortunately, that means you'll have to create a Google account if you don't already have one (in general, I am opposed to creating new accounts and giving away your personal information if you don't have to).
 
@@ -202,9 +205,17 @@ You should read the Google Play Developer Distribution, which governs the rules 
 ![Agree to the Google Play agreement](images/play-agree.png)
 
 
+After logging in, you should see a list of all apps that you have permission to edit on this account.
+
+![View all apps](images/play-all-apps.png)
 
 ## Adding a new application
 
+After you've generated your app, click the upload button.
+
+![Dialog to upload your APK](images/upload-apk.png)
+
 ## Filling out the necessary information
 
-### 
+
+###
