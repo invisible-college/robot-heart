@@ -13,7 +13,7 @@ By the time you're done, you'll have
 
 # Pre-work
 
-* Download and install the [http://developer.android.com/sdk/index.html](Android Studio IDE 1.4), which also includes the Android SDK.
+* Download and install the [Android Studio IDE 1.5.1](http://developer.android.com/sdk/index.html), which also includes the Android SDK.
 * As you are setting up Android Studio, you'll need to select SDK packages to
 install. These are the packages you should select:
 
