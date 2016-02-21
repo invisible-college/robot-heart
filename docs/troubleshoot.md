@@ -23,3 +23,8 @@ In particular for LG phones, you will need to enable an additional option.
 
 Settings -> Networks -> Tethering -> USB tethering.
 When you switch it on, it will ask you if the RSA key from your connected computer is okay.
+
+## Linux
+
+On Linux, you'll need to add your vendor's ID into `~/.android/adb_usb.ini`
+according to the [official Android device doc](http://developer.android.com/tools/device.html.
