@@ -20,14 +20,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 /**
  * TODO: document your custom view class.
  */
-public class MyView extends View {
+public class MyView extends ImageView {
     private String mExampleString = getResources().getString(R.string.default_example_string);
     private int mExampleColor = Color.RED; // TODO: use a default from R.color...
     private float mExampleDimension = R.dimen.myview_default_dimension;
@@ -60,6 +60,16 @@ public class MyView extends View {
     public MyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle, context);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(l + " ");
+        sb.append(t + " ");
+        sb.append(r + " ");
+        sb.append(b + " ");
+        Log.i(LOG_TAG, sb.toString());
     }
 
     private void init(AttributeSet attrs, int defStyle, Context context) {
@@ -107,6 +117,7 @@ public class MyView extends View {
 
         // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements();
+
     }
 
     private void invalidateTextPaintAndMeasurements() {
@@ -269,6 +280,87 @@ public class MyView extends View {
     private static Animator mCurrentAnimator;
     private final static int mShortAnimationDuration = 1000;
 
+    private class Listener implements OnTouchListener, OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            MyView myView = (MyView)view;
+            zoomFromThumb(myView);
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                onClick(v);
+            }
+            return true;
+        }
+    };
+
+    // Listener class for the expanded view to shrink back down to thumbnail view.
+    private class ExpandedListener implements OnClickListener, OnTouchListener {
+
+        MyView mThumbView;
+        private Rect mStartBounds;
+        private Rect mFinalBounds;
+        private float mStartScale;
+
+        public ExpandedListener(MyView thumbView, Rect startBounds, Rect finalBounds, float startScale) {
+            mStartBounds = startBounds;
+            mFinalBounds = finalBounds;
+            mStartScale = startScale;
+            mThumbView = thumbView;
+        }
+
+        @Override
+        public void onClick(final View expandedView) {
+            // If there's an animation in progress, cancel it immediately and
+            // proceed with this one.
+            if (mCurrentAnimator != null) {
+                mCurrentAnimator.cancel();
+            }
+
+            AnimatorSet set = new AnimatorSet();
+            set.play(
+                    ObjectAnimator.ofFloat(expandedView, View.X,
+                            mFinalBounds.left, mStartBounds.left))
+                    .with(ObjectAnimator.ofFloat(expandedView, View.Y,
+                            mFinalBounds.top, mStartBounds.top))
+                    .with(ObjectAnimator.ofFloat(expandedView, View.SCALE_X,
+                            1f, mStartScale))
+                    .with(ObjectAnimator.ofFloat(expandedView, View.SCALE_Y,
+                            1f, mStartScale));
+            set.setDuration(mShortAnimationDuration);
+            set.setInterpolator(new DecelerateInterpolator());
+            set.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    expandedView.setVisibility(View.GONE);
+                    mThumbView.setAlpha(1f);
+                    mCurrentAnimator = null;
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    mCurrentAnimator = null;
+                }
+            });
+            set.start();
+            mCurrentAnimator = set;
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                onClick(v);
+            }
+            return false;
+        }
+    }
+
+    public static void zoomFromExpanded(final MyView thumbView) {
+    }
+
     public void zoomFromThumb(final MyView expandedView) {
         // If there's an animation in progress, cancel it immediately and
         // proceed with this one.
@@ -280,10 +372,12 @@ public class MyView extends View {
 
         expandedView.setExampleDrawable(this.getExampleDrawable());
         expandedView.setExampleString( this.getExampleString() );
+        expandedView.setExampleColor( this.getExampleColor() );
+        expandedView.setExampleDimension( this.getExampleDimension() );
 
         // Calculate the starting and ending bounds for the zoomed-in image.
-        // This step
-        // involves lots of math. Yay, math.
+        // This step involves lots of math. Yay, math.
+        // Rect's are a 4-tuple (top, left, bottom, right) of absolute coordinates.
         final Rect startBounds = new Rect();
         final Rect finalBounds = new Rect();
         final Point globalOffset = new Point();
@@ -298,6 +392,9 @@ public class MyView extends View {
         this.getGlobalVisibleRect(startBounds);
         ((Activity) mContext).findViewById(R.id.activity_main)
                 .getGlobalVisibleRect(finalBounds, globalOffset);
+
+        // These are offest based on activity_main's position, which may be shifted
+        // due to toolbar, etc.
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
@@ -308,19 +405,27 @@ public class MyView extends View {
         // Also calculate the start scaling factor (the end scaling factor is
         // always 1.0).
         float startScale;
+
+        // Start scale at the smallest dimension of start thumbnail.
+
         if ((float) finalBounds.width() / finalBounds.height() > (float) startBounds
                 .width() / startBounds.height()) {
+
+            // Final aspect ratio is fatter (wider) than start aspect ratio.
             // Extend start bounds horizontally
             startScale = (float) startBounds.height() / finalBounds.height();
             float startWidth = startScale * finalBounds.width();
             float deltaWidth = (startWidth - startBounds.width()) / 2;
+            // Then center horizontally
             startBounds.left -= deltaWidth;
             startBounds.right += deltaWidth;
         } else {
+            // Final aspect ratio is narrower (taller) than start aspect ratio
             // Extend start bounds vertically
             startScale = (float) startBounds.width() / finalBounds.width();
             float startHeight = startScale * finalBounds.height();
             float deltaHeight = (startHeight - startBounds.height()) / 2;
+            // Then center vertically
             startBounds.top -= deltaHeight;
             startBounds.bottom += deltaHeight;
         }
@@ -328,7 +433,7 @@ public class MyView extends View {
         // Hide the thumbnail and show the zoomed-in view. When the animation
         // begins,
         // it will position the zoomed-in view in the place of the thumbnail.
-        this.setAlpha(0f);
+        this.setAlpha(0f); // make original thumbnail invisible
         expandedView.setVisibility(View.VISIBLE);
 
         // Set the pivot point for SCALE_X and SCALE_Y transformations to the
@@ -366,54 +471,13 @@ public class MyView extends View {
         set.start();
         mCurrentAnimator = set;
 
-        final MyView thumbView = this;
-
         // Upon clicking the zoomed-in image, it should zoom back down to the
         // original bounds
         // and show the thumbnail instead of the expanded image.
-        final float startScaleFinal = startScale;
-        expandedView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCurrentAnimator != null) {
-                    mCurrentAnimator.cancel();
-                }
 
-                // Animate the four positioning/sizing properties in parallel,
-                // back to their
-                // original values.
-                AnimatorSet set = new AnimatorSet();
-                set.play(
-                        ObjectAnimator.ofFloat(expandedView, View.X,
-                                startBounds.left))
-                        .with(ObjectAnimator.ofFloat(expandedView, View.Y,
-                                startBounds.top))
-                        .with(ObjectAnimator.ofFloat(expandedView,
-                                View.SCALE_X, startScaleFinal))
-                        .with(ObjectAnimator.ofFloat(expandedView,
-                                View.SCALE_Y, startScaleFinal));
-                set.setDuration(mShortAnimationDuration);
-                set.setInterpolator(new DecelerateInterpolator());
-                set.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        thumbView.setAlpha(1f);
-                        expandedView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        thumbView.setAlpha(1f);
-                        expandedView.setVisibility(View.GONE);
-                        mCurrentAnimator = null;
-                    }
-                });
-                set.start();
-                mCurrentAnimator = set;
-            }
-        });
-
+        ExpandedListener listener = new ExpandedListener(this, startBounds, finalBounds, startScale);
+        expandedView.setOnClickListener(listener);
+        expandedView.setOnTouchListener(listener);
     }
 
 }

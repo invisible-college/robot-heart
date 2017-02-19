@@ -16,6 +16,7 @@
         android:orientation="vertical"
         android:id="@+id/container">
 -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,21 +25,38 @@
         <GridView
             android:id="@+id/gridview"
             android:layout_width="fill_parent"
-            android:layout_height="300dp"
+            android:layout_height="fill_parent"
             android:columnWidth="90dp"
             android:gravity="center"
             android:horizontalSpacing="10dp"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
             android:verticalSpacing="10dp" />
-<!--
-        <ImageView
-            android:id="@+id/expanded_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
--->
-        <include layout="@layout/sample_my_view" />
+
+        <!-- Expanded view should be in front -->
+    <college.invisible.zoomviewdemo.MyView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ccc"
+        android:paddingBottom="40dp"
+        android:paddingLeft="20dp"
+        android:id="@+id/expanded_my_view"
+        app:exampleColor="#33b5e5"
+        app:exampleDimension="24sp"
+        app:exampleDrawable="@android:drawable/ic_menu_add"
+        app:exampleString="Hello, MyView"
+        android:visibility="invisible"
+        android:clickable="false"
+        android:focusable="false"
+        />
+        <!--
+                <ImageView
+                    android:id="@+id/expanded_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
+        -->
 <!--
     </LinearLayout>
 -->

@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
         mView = (MyView) findViewById(R.id.my_view);
         mView.setExampleString("Verbus Programmaticus");
 */
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        GridView gridView = (GridView) findViewById(R.id.gridview);
+        gridView.setColumnWidth(200);
+        gridView.setAdapter(new ImageAdapter(this));
     }
 }
