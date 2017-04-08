@@ -18,7 +18,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
@@ -28,12 +27,10 @@ import android.widget.RelativeLayout;
  * TODO: document your custom view class.
  */
 public class MyView extends ImageView {
-    private String mExampleString = getResources().getString(R.string.default_example_string);
-    private int mExampleColor = Color.RED; // TODO: use a default from R.color...
-    private float mExampleDimension = R.dimen.myview_default_dimension;
+    private String mExampleString;
+    private int mExampleColor = Color.RED;
+    private float mExampleDimension;
     private Drawable mExampleDrawable;
-    private ScaleGestureDetector mScaleDetector;
-    private float mScaleFactor = 1.f;
 
     private TextPaint mTextPaint;
     private float mTextWidth;
@@ -101,8 +98,6 @@ public class MyView extends ImageView {
 
         a.recycle();
 
-        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
-
         // Set up a default TextPaint object
         mTextPaint = new TextPaint();
         mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -134,7 +129,6 @@ public class MyView extends ImageView {
         super.onDraw(canvas);
 
         canvas.save();
-        canvas.scale(mScaleFactor, mScaleFactor);
         //setLayoutParams(new ViewGroup.MarginLayoutParams(600, 600));
 
         // TODO: consider storing these as member variables to reduce
@@ -255,47 +249,9 @@ public class MyView extends ImageView {
         mExampleDrawable = exampleDrawable;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        // Let the ScaleGestureDetector inspect all events.
-        mScaleDetector.onTouchEvent(ev);
-        return true;
-    }
-
-    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
-
-            // Don't let the object get too small or too large.
-            // Clamp at 0.1 of the original size, or 5 times as large.
-            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-
-            invalidate();
-            return true;
-        }
-    }
-
     // A common animator shared by all zoomable image views
     private static Animator mCurrentAnimator;
     private final static int mShortAnimationDuration = 1000;
-
-    private class Listener implements OnTouchListener, OnClickListener {
-
-        @Override
-        public void onClick(View view) {
-            MyView myView = (MyView)view;
-            zoomFromThumb(myView);
-        }
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                onClick(v);
-            }
-            return true;
-        }
-    };
 
     // Listener class for the expanded view to shrink back down to thumbnail view.
     private class ExpandedListener implements OnClickListener, OnTouchListener {
@@ -323,13 +279,13 @@ public class MyView extends ImageView {
             AnimatorSet set = new AnimatorSet();
             set.play(
                     ObjectAnimator.ofFloat(expandedView, View.X,
-                            mFinalBounds.left, mStartBounds.left))
+                            mStartBounds.left))
                     .with(ObjectAnimator.ofFloat(expandedView, View.Y,
-                            mFinalBounds.top, mStartBounds.top))
+                            mStartBounds.top))
                     .with(ObjectAnimator.ofFloat(expandedView, View.SCALE_X,
-                            1f, mStartScale))
+                            mStartScale))
                     .with(ObjectAnimator.ofFloat(expandedView, View.SCALE_Y,
-                            1f, mStartScale));
+                            mStartScale));
             set.setDuration(mShortAnimationDuration);
             set.setInterpolator(new DecelerateInterpolator());
             set.addListener(new AnimatorListenerAdapter() {
@@ -356,9 +312,6 @@ public class MyView extends ImageView {
             }
             return false;
         }
-    }
-
-    public static void zoomFromExpanded(final MyView thumbView) {
     }
 
     public void zoomFromThumb(final MyView expandedView) {
@@ -439,8 +392,9 @@ public class MyView extends ImageView {
         // Set the pivot point for SCALE_X and SCALE_Y transformations to the
         // top-left corner of
         // the zoomed-in view (the default is the center of the view).
-        expandedView.setPivotX(0f);
-        expandedView.setPivotY(0f);
+        //expandedView.setPivotX(0f);
+        //expandedView.setPivotY(0f);
+        expandedView.setScaleType(ScaleType.CENTER_CROP);
 
         // Construct and run the parallel animation of the four translation and
         // scale properties
@@ -461,6 +415,8 @@ public class MyView extends ImageView {
             @Override
             public void onAnimationEnd(Animator animation) {
                 mCurrentAnimator = null;
+                expandedView.setClickable(true);
+                expandedView.setFocusable(true);
             }
 
             @Override
@@ -468,6 +424,9 @@ public class MyView extends ImageView {
                 mCurrentAnimator = null;
             }
         });
+        ExpandedListener listener = new ExpandedListener(this, startBounds, finalBounds, startScale);
+        expandedView.setOnClickListener(listener);
+        expandedView.setOnTouchListener(listener);
         set.start();
         mCurrentAnimator = set;
 
@@ -475,9 +434,6 @@ public class MyView extends ImageView {
         // original bounds
         // and show the thumbnail instead of the expanded image.
 
-        ExpandedListener listener = new ExpandedListener(this, startBounds, finalBounds, startScale);
-        expandedView.setOnClickListener(listener);
-        expandedView.setOnTouchListener(listener);
     }
 
 }
